@@ -1,5 +1,6 @@
 import MyDebitCards from "@/views/MyDebitCards.vue";
 import MyTransactions from "@/views/MyTransactions.vue";
+import DebitCardActions from "@/components/DebitCardActions.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
@@ -14,6 +15,11 @@ const router = createRouter({
       path: "/transactions",
       name: "my-transactions",
       component: MyTransactions,
+    },
+    {
+      path: "/card-actions",
+      name: "my-card-actions",
+      component: DebitCardActions,
     },
     {
       path: "/about",

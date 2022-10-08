@@ -1,28 +1,51 @@
 <script setup lang="ts">
 import DebitCard from "@/components/DebitCard.vue";
 import { ref } from "vue";
+import DebitCardActions from "../components/DebitCardActions.vue";
 
-const allDebitCards = ref([
+let allDebitCards = ref([
   {
     name: "Jack Reacher",
-    number: "1212121212121212aa",
+    number: "1111111111111111",
     expiresOn: "12/12",
     color: "#01D167",
+    isCardFrozen: false,
   },
   {
     name: "Jack 1",
-    number: "121212121212321212bb",
+    number: "2222222222222222",
     expiresOn: "12/12",
-    color: "red",
+    color: "#536DFF",
+    isCardFrozen: false,
   },
   {
     name: "Jack 2",
-    number: "121212121345343121212cc",
+    number: "3333333333333333",
     expiresOn: "12/12",
-    color: "blue",
+    color: "#01D167",
+    isCardFrozen: false,
   },
 ]);
 const defaultCard = ref(allDebitCards.value[0].number);
+const selectedCard = ref(allDebitCards.value[0]);
+
+const onFocus = (newVal: any) => {
+  allDebitCards.value.forEach(function (card: any) {
+    if (card.number === newVal) {
+      selectedCard.value = card;
+    }
+  });
+  console.log(selectedCard.value, "selectedCard");
+};
+
+const handleFreeze = (cardNumber: string) => {
+  allDebitCards.value.forEach(function (card: any) {
+    if (card.number === cardNumber) {
+      card.isCardFrozen = !card.isCardFrozen;
+      console.log(card, "frozenCard");
+    }
+  });
+};
 </script>
 
 <template>
@@ -33,7 +56,12 @@ const defaultCard = ref(allDebitCards.value[0].number);
       navigation
       infinite
       swipeable
-      class="my-debit-cards-carousel"
+      class="my-debit-cards-carousel flex-center"
+      @transition="
+        (newVal, oldVal) => {
+          onFocus(newVal);
+        }
+      "
     >
       <template v-slot:navigation-icon="{ active, btnProps, onClick }">
         <q-btn
@@ -53,16 +81,26 @@ const defaultCard = ref(allDebitCards.value[0].number);
           @click="onClick"
         />
       </template>
-      <q-carousel-slide v-for="card in allDebitCards" :name="card.number">
+      <q-carousel-slide
+        v-for="card in allDebitCards"
+        :name="card.number"
+        class="flex-center"
+      >
         <DebitCard
           :key="card.number"
           :card-holder-name="card.name"
           :card-number="card.number"
           :expiry-date="card.expiresOn"
           :color="card.color"
+          :is-card-frozen="card.isCardFrozen"
         />
       </q-carousel-slide>
     </q-carousel>
+    <DebitCardActions
+      @onFreeze="handleFreeze"
+      :debit-card-number="selectedCard.number"
+      :is-card-frozen="selectedCard.isCardFrozen"
+    />
   </div>
 </template>
 

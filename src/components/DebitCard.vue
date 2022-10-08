@@ -1,16 +1,23 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   cardHolderName: String,
   cardNumber: String,
   expiryDate: String,
   color: String,
+  isCardFrozen: Boolean,
 });
 </script>
 
 <template>
-  <q-card class="debit-card rounded-borders" :style="{ backgroundColor: color }">
+  <q-card
+    class="debit-card rounded-borders"
+    :style="{ backgroundColor: color, opacity: props.isCardFrozen ? 0.2 : 1 }"
+  >
     <q-card-section class="column">
-      <img src="@/assets/aspire-logo.png" class="debit-card__aspire-logo self-end" />
+      <img
+        src="@/assets/aspire-logo.png"
+        class="debit-card__aspire-logo self-end"
+      />
       <q-card flat style="background-color: transparent">
         <q-card-section class="column q-px-md">
           <p class="debit-card__card-holder-name">{{ cardHolderName }}</p>
@@ -24,7 +31,10 @@ defineProps({
           </q-card>
         </q-card-section>
       </q-card>
-      <img src="@/assets/visa-logo.png" class="debit-card__visa-logo self-end" />
+      <img
+        src="@/assets/visa-logo.png"
+        class="debit-card__visa-logo self-end"
+      />
     </q-card-section>
   </q-card>
 </template>
