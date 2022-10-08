@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import DebitCard from "@/components/DebitCard.vue";
 import { ref } from "vue";
-import DebitCardActions from "../components/DebitCardActions.vue";
-import ConfirmCancelModal from "../components/ConfirmCancelModal.vue";
+import DebitCardActions from "@/components/DebitCardActions.vue";
+import ConfirmCancelModal from "@/components/ConfirmCancelModal.vue";
+import MainLayout from "@/layouts/MainLayout.vue";
 
 let allDebitCards = ref([
   {
@@ -56,61 +57,64 @@ const onCancel = () => {
 </script>
 
 <template>
-  <div class="q-pa-lg">
-    <q-carousel
-      animated
-      v-model="defaultCard"
-      navigation
-      infinite
-      swipeable
-      class="my-debit-cards-carousel flex-center"
-      @transition="
-        (newVal, oldVal) => {
-          onFocus(newVal);
-        }
-      "
-    >
-      <template v-slot:navigation-icon="{ active, btnProps, onClick }">
-        <q-btn
-          v-if="active"
-          style="background: #01d167; opacity: 1"
-          size="xs"
-          dense
-          round
-          rounded
-        />
-        <q-btn
-          v-else
-          style="background: #01d167; opacity: 0.1"
-          round
-          size="xs"
-          dense
-          @click="onClick"
-        />
-      </template>
-      <q-carousel-slide
-        v-for="card in allDebitCards"
-        :name="card.number"
-        class="flex-center"
+  <MainLayout>
+    <div class="q-pa-lg">
+      <q-carousel
+        animated
+        v-model="defaultCard"
+        navigation
+        infinite
+        swipeable
+        class="my-debit-cards-carousel flex-center"
+        @transition="
+          (newVal, oldVal) => {
+            onFocus(newVal);
+          }
+        "
       >
-        <DebitCard
+        <template v-slot:navigation-icon="{ active, btnProps, onClick }">
+          <q-btn
+            v-if="active"
+            style="background: #01d167; opacity: 1"
+            size="xs"
+            dense
+            round
+            rounded
+          />
+          <q-btn
+            v-else
+            style="background: #01d167; opacity: 0.1"
+            round
+            size="xs"
+            dense
+            @click="onClick"
+          />
+        </template>
+        <q-carousel-slide
+          v-for="card in allDebitCards"
           :key="card.number"
-          :card-holder-name="card.name"
-          :card-number="card.number"
-          :expiry-date="card.expiresOn"
-          :color="card.color"
-          :is-card-frozen="card.isCardFrozen"
-        />
-      </q-carousel-slide>
-    </q-carousel>
-    <DebitCardActions
-      @onFreeze="handleFreeze"
-      :debit-card-number="selectedCard.number"
-      :is-card-frozen="selectedCard.isCardFrozen"
-      @onCancel="onCancel"
-    />
-    <ConfirmCancelModal :display-modal="openCancelConfirm" />
-  </div>
+          :name="card.number"
+          class="flex-center"
+        >
+          <DebitCard
+            :key="card.number"
+            :card-holder-name="card.name"
+            :card-number="card.number"
+            :expiry-date="card.expiresOn"
+            :color="card.color"
+            :is-card-frozen="card.isCardFrozen"
+          />
+        </q-carousel-slide>
+      </q-carousel>
+      <DebitCardActions
+        @onFreeze="handleFreeze"
+        :debit-card-number="selectedCard.number"
+        :is-card-frozen="selectedCard.isCardFrozen"
+        @onCancel="onCancel"
+      />
+      <ConfirmCancelModal :display-modal="openCancelConfirm" />
+    </div>
+  </MainLayout>
 </template>
 
 <style lang="scss" scoped>

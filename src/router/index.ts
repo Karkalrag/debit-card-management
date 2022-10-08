@@ -8,22 +8,30 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "my-debit-cards",
+      name: "home",
       component: MyDebitCards,
     },
     {
-      path: "/transactions",
-      name: "my-transactions",
-      component: MyTransactions,
+      path: "/cards",
+      name: "cards",
+      component: MyDebitCards,
     },
     {
-      path: "/card-actions",
-      name: "my-card-actions",
+      path: "/payments",
+      name: "payments",
       component: DebitCardActions,
     },
     {
-      path: "/about",
-      name: "about",
+      path: "/credit",
+      name: "credit",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/AboutView.vue"),
+    },
+    {
+      path: "/profile",
+      name: "profile",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.

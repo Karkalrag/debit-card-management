@@ -76,7 +76,7 @@ const myTransactions = ref([
 </template>
 
 <style scoped lang="scss">
-@import "../styles/quasar.variables.scss";
+@import "@/styles/quasar.variables.scss";
 .my-transactions-header-style {
   width: 23.125rem;
   background-color: $collapse-header-bg;
