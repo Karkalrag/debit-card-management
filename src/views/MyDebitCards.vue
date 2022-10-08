@@ -4,6 +4,8 @@ import { ref } from "vue";
 import DebitCardActions from "@/components/DebitCardActions.vue";
 import ConfirmCancelModal from "@/components/ConfirmCancelModal.vue";
 import MainLayout from "@/layouts/MainLayout.vue";
+import CardsHeader from "@/components/cards/CardsHeader.vue";
+import CardTabs from "../components/cards/CardTabs.vue";
 
 let allDebitCards = ref([
   {
@@ -58,6 +60,8 @@ const onCancel = () => {
 
 <template>
   <MainLayout>
+    <CardsHeader />
+    <CardTabs class="q-mt-lg" />
     <div class="q-pa-lg">
       <q-carousel
         animated
