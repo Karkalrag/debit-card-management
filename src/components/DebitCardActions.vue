@@ -2,7 +2,7 @@
 import { ref } from "vue";
 const props = defineProps({
   isCardFrozen: Boolean,
-  debitCardNumber: String,
+  debitCardId: Number,
 });
 
 defineEmits(["onFreeze", "onClick", "onCancel"]);
@@ -46,7 +46,7 @@ const allActions = ref([
       no-caps
       class="debit-card-action__action-text"
       :disable="action.name !== 'Freeze card' && props.isCardFrozen"
-      @click="$emit(action.emit, props.debitCardNumber)"
+      @click="$emit(action.emit)"
     />
   </q-btn-group>
 </template>

@@ -33,30 +33,37 @@ const allDebitCards = ref([
     isCardFrozen: false,
   },
 ]);
-const selectedCardId = ref(1);
+let selectedCardId = ref(1);
 let openCancelConfirm = ref(false);
 
-// const onFocus = (newVal: any) => {
-//   allDebitCards.value.forEach(function (card: any) {
-//     if (card.number === newVal) {
-//       selectedCard.value = card;
-//     }
-//   });
-//   console.log(selectedCard.value, "selectedCard");
-// };
-
-const handleFreeze = (cardNumber: string) => {
+const onFocus = (newVal: any) => {
   allDebitCards.value.forEach(function (card: any) {
-    if (card.number === cardNumber) {
+    if (card.id === newVal) {
+      selectedCardId.value = card.id;
+    }
+  });
+};
+
+const isSelectedCardForzen = () => {
+  let isFrozen = false;
+  allDebitCards.value.forEach(function (card: any) {
+    if (card.id === selectedCardId.value) {
+      isFrozen = card.isCardFrozen;
+    }
+  });
+  return isFrozen;
+};
+
+const handleFreeze = () => {
+  allDebitCards.value.forEach(function (card: any) {
+    if (card.id === selectedCardId.value) {
       card.isCardFrozen = !card.isCardFrozen;
-      console.log(card, "frozenCard");
     }
   });
 };
 
 const onCancel = () => {
   openCancelConfirm.value = !openCancelConfirm.value;
-  console.log(openCancelConfirm.value);
 };
 </script>
 
@@ -67,14 +74,15 @@ const onCancel = () => {
     <CardsCarousel
       :selected-card-id="selectedCardId"
       :all-debit-cards="allDebitCards"
+      @onFocus="onFocus"
     />
     <div class="q-pa-lg">
-      <!-- <DebitCardActions
+      <DebitCardActions
         @onFreeze="handleFreeze"
-        :debit-card-number="selectedCard.number"
-        :is-card-frozen="selectedCard.isCardFrozen"
+        :debit-card-number="selectedCardId"
+        :is-card-frozen="isSelectedCardForzen()"
         @onCancel="onCancel"
-      /> -->
+      />
       <ConfirmCancelModal :display-modal="openCancelConfirm" />
     </div>
   </MainLayout>

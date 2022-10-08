@@ -23,6 +23,7 @@ const currentCardId = ref(props.selectedCardId);
     transition-prev="slide-right"
     transition-next="slide-left"
     class="my-debit-cards-carousel flex-center"
+    @transition="$emit('onFocus', currentCardId)"
   >
     <template v-slot:navigation-icon="{ active, onClick }">
       <q-btn
