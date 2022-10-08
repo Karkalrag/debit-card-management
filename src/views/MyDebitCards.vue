@@ -6,19 +6,19 @@ const allDebitCards = ref([
   {
     name: "Jack Reacher",
     number: "1212121212121212",
-    expiresOn: "12/12/12",
-    color: "green",
+    expiresOn: "12/12",
+    color: "#01D167",
   },
   {
     name: "Jack 1",
     number: "121212121212321212",
-    expiresOn: "12/12/13",
+    expiresOn: "12/12",
     color: "red",
   },
   {
     name: "Jack 2",
     number: "121212121345343121212",
-    expiresOn: "12/12/14",
+    expiresOn: "12/12",
     color: "blue",
   },
 ]);
