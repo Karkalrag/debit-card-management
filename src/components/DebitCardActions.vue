@@ -5,7 +5,7 @@ const props = defineProps({
   debitCardNumber: String,
 });
 
-defineEmits(["onFreeze", "onClick"]);
+defineEmits(["onFreeze", "onClick", "onCancel"]);
 
 const allActions = ref([
   {
@@ -32,7 +32,7 @@ const allActions = ref([
     name: "Cancel card",
     icon: "replace-card",
     method: "cancelCard",
-    emit: "onClick",
+    emit: "onCancel",
   },
 ]);
 </script>

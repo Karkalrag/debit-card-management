@@ -2,6 +2,7 @@
 import DebitCard from "@/components/DebitCard.vue";
 import { ref } from "vue";
 import DebitCardActions from "../components/DebitCardActions.vue";
+import ConfirmCancelModal from "../components/ConfirmCancelModal.vue";
 
 let allDebitCards = ref([
   {
@@ -28,6 +29,7 @@ let allDebitCards = ref([
 ]);
 const defaultCard = ref(allDebitCards.value[0].number);
 const selectedCard = ref(allDebitCards.value[0]);
+let openCancelConfirm = ref(false);
 
 const onFocus = (newVal: any) => {
   allDebitCards.value.forEach(function (card: any) {
@@ -45,6 +47,11 @@ const handleFreeze = (cardNumber: string) => {
       console.log(card, "frozenCard");
     }
   });
+};
+
+const onCancel = () => {
+  openCancelConfirm.value = !openCancelConfirm.value;
+  console.log(openCancelConfirm.value);
 };
 </script>
 
@@ -100,7 +107,9 @@ const handleFreeze = (cardNumber: string) => {
       @onFreeze="handleFreeze"
       :debit-card-number="selectedCard.number"
       :is-card-frozen="selectedCard.isCardFrozen"
+      @onCancel="onCancel"
     />
+    <ConfirmCancelModal :display-modal="openCancelConfirm" />
   </div>
 </template>
 
