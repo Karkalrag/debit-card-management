@@ -6,6 +6,15 @@ const props = defineProps({
   color: String,
   isCardFrozen: Boolean,
 });
+const formatCardNumber = () => {
+  let formattedNumber = props.cardNumber;
+  if (formattedNumber) {
+    formattedNumber = formattedNumber
+      .replace(/\W/gi, "")
+      .replace(/(.{4})/g, "$1 ");
+  }
+  return formattedNumber;
+};
 </script>
 
 <template>
@@ -21,7 +30,7 @@ const props = defineProps({
       <q-card flat style="background-color: transparent">
         <q-card-section class="column q-px-md">
           <p class="debit-card__card-holder-name">{{ cardHolderName }}</p>
-          <p class="debit-card__card-number">{{ cardNumber }}</p>
+          <p class="debit-card__card-number">{{ formatCardNumber() }}</p>
           <q-card flat class="debit-card__expiry-cvv-box">
             <q-card-section horizontal class="row">
               <p class="debit-card__expiry">Thru:{{ expiryDate }}</p>
