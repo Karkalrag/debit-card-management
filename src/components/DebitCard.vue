@@ -40,18 +40,6 @@ const props = defineProps({
 </template>
 
 <style scoped lang="scss">
-.debit-card {
-  width: 22.5rem;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
 .debit-card__aspire-logo,
 .debit-card__visa-logo {
   height: 1.25rem;
