@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 const props = defineProps({
   cardHolderName: String,
   cardNumber: String,
@@ -6,40 +8,37 @@ const props = defineProps({
   color: String,
   isCardFrozen: Boolean,
 });
-const formatCardNumber = () => {
-  let formattedNumber = props.cardNumber;
-  if (formattedNumber) {
-    formattedNumber = formattedNumber
-      .replace(/\W/gi, "")
-      .replace(/(.{4})/g, "$1 ");
+
+const formattedCardNumber = computed(() => {
+  if (props.cardNumber) {
+    return props.cardNumber.replace(/\W/gi, "").replace(/(.{4})/g, "$1   ");
   }
-  return formattedNumber;
-};
+
+  return "";
+});
 </script>
 
 <template>
   <q-card
-    class="debit-card rounded-borders"
+    class="debit-card"
     :style="{ backgroundColor: color, opacity: props.isCardFrozen ? 0.2 : 1 }"
   >
-    <q-card-section class="column">
+    <q-card-section class="q-pa-lg column">
       <img
         src="@/assets/aspire-logo.png"
         class="debit-card__aspire-logo self-end"
       />
-      <q-card flat style="background-color: transparent">
-        <q-card-section class="column q-px-md">
-          <p class="debit-card__card-holder-name">{{ cardHolderName }}</p>
-          <p class="debit-card__card-number">{{ formatCardNumber() }}</p>
-          <q-card flat class="debit-card__expiry-cvv-box">
-            <q-card-section horizontal class="row">
-              <p class="debit-card__expiry">Thru:{{ expiryDate }}</p>
-              <q-space />
-              <p class="debit-card__expiry">CVV:***</p>
-            </q-card-section>
-          </q-card>
+
+      <p class="debit-card__card-holder-name">{{ cardHolderName }}</p>
+      <p class="debit-card__card-number">{{ formattedCardNumber }}</p>
+      <q-card flat class="debit-card__expiry-cvv-box">
+        <q-card-section horizontal class="row">
+          <p class="debit-card__expiry">Thru: {{ expiryDate }}</p>
+          <q-space />
+          <p class="debit-card__expiry">CVV: ***</p>
         </q-card-section>
       </q-card>
+
       <img
         src="@/assets/visa-logo.png"
         class="debit-card__visa-logo self-end"
@@ -49,6 +48,11 @@ const formatCardNumber = () => {
 </template>
 
 <style scoped lang="scss">
+.debit-card {
+  width: 100%;
+  max-width: 22.375rem;
+  border-radius: 0.75rem;
+}
 .debit-card__aspire-logo,
 .debit-card__visa-logo {
   height: 1.25rem;

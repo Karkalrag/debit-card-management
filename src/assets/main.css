@@ -1,3 +1,6 @@
 .text-tabblue {
   background-color: #23cefd !important;
 }
+.q-carousel__slide {
+  padding: 0 !important;
+}
