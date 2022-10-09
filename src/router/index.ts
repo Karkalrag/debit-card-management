@@ -1,5 +1,5 @@
 import MyDebitCards from "@/views/MyDebitCards.vue";
-import MyTransactions from "@/views/MyTransactions.vue";
+import MyTransactions from "@/components/MyTransactions.vue";
 import DebitCardActions from "@/components/DebitCardActions.vue";
 import { createRouter, createWebHistory } from "vue-router";
 

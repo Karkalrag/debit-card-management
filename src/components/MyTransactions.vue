@@ -57,6 +57,7 @@ const myTransactions = ref([
     <q-card class="column rounded-borders">
       <TransactionItem
         v-for="transaction in myTransactions"
+        :key="transaction.transactionDate"
         :transaction-name="transaction.transactionName"
         :transaction-date="transaction.transactionDate"
         :transaction-desc="transaction.transactionDesc"

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import DebitCardActions from "@/components/DebitCardActions.vue";
 import ConfirmCancelModal from "@/components/ConfirmCancelModal.vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import CardsHeader from "@/components/cards/CardsHeader.vue";
-import CardTabs from "../components/cards/CardTabs.vue";
-import CardsCarousel from "../components/cards/CardsCarousel.vue";
+import CardTabs from "@/components/cards/CardTabs.vue";
+import CardsCarousel from "@/components/cards/CardsCarousel.vue";
+import MyTransactions from "@/components/MyTransactions.vue";
 
 const allDebitCards = ref([
   {
@@ -82,32 +83,39 @@ const cancelDebitCard = () => {
 </script>
 
 <template>
-  <MainLayout>
-    <CardsHeader />
-    <CardTabs class="q-mt-lg" />
-    <CardsCarousel
-      :selected-card-id="selectedCardId"
-      :all-debit-cards="allDebitCards"
-      @onFocus="onFocus"
-    />
-    <div class="q-pa-lg">
-      <DebitCardActions
-        @onFreeze="handleFreeze"
-        :debit-card-number="selectedCardId"
-        :is-card-frozen="isSelectedCardForzen()"
-        @onCancel="onCancel"
-      />
-      <ConfirmCancelModal
-        :display-modal="openCancelConfirm"
-        @onCancelAction="onCancelAction"
-        @onConfirmAction="cancelDebitCard"
-      />
+  <div class="my-debit-cards">
+    <div class="my-debit-cards__top-section">
+      <MainLayout>
+        <CardsHeader />
+        <CardTabs class="q-mt-lg" />
+        <CardsCarousel
+          :selected-card-id="selectedCardId"
+          :all-debit-cards="allDebitCards"
+          @onFocus="onFocus"
+        />
+        <ConfirmCancelModal
+          :display-modal="openCancelConfirm"
+          @onCancelAction="onCancelAction"
+          @onConfirmAction="cancelDebitCard"
+        />
+      </MainLayout>
     </div>
-  </MainLayout>
+    <DebitCardActions
+      @onFreeze="handleFreeze"
+      :debit-card-number="selectedCardId"
+      :is-card-frozen="isSelectedCardForzen()"
+      @onCancel="onCancel"
+    />
+    <MyTransactions />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .my-debit-cards-carousel {
   background: transparent;
+}
+.my-debit-cards__top-section {
+  position: sticky;
+  top: 0;
 }
 </style>
