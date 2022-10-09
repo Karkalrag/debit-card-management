@@ -7,6 +7,7 @@ import CardsHeader from "@/components/cards/CardsHeader.vue";
 import CardTabs from "@/components/cards/CardTabs.vue";
 import CardsCarousel from "@/components/cards/CardsCarousel.vue";
 import MyTransactions from "@/components/MyTransactions.vue";
+import CardDetails from "@/components/CardDetails.vue";
 
 const allDebitCards = ref([
   {
@@ -107,7 +108,8 @@ const cancelDebitCard = () => {
         :is-card-frozen="isSelectedCardForzen()"
         @onCancel="onCancel"
       />
-      <div class="my-debit-cards__expansion-sections-container q-pa-md">
+      <div class="my-debit-cards__expansion-sections-container q-py-md">
+        <CardDetails />
         <MyTransactions />
       </div>
     </div>
