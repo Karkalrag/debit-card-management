@@ -76,16 +76,14 @@ Make sure you have node version greater than or equal to 16.\*
 
 ### Installation
 
-````
-
 1. Clone the repo using Github desktop or Fork or git CLI
- git clone https://github.com/Karkalrag/debit-card-management.git
+   git clone https://github.com/Karkalrag/debit-card-management.git
 
-2.Install the NPM package
+2. Install the NPM package
 
 ```sh
 npm install
-````
+```
 
 3.Run locally
 
