@@ -1,7 +1,12 @@
+<script setup lang="ts">
+defineProps({
+  cardIcon: String,
+});
+</script>
 <template>
   <q-expansion-item
-    icon="img:src/assets/arrows-group.png"
-    label="Recent transactions"
+    :icon="`img:src/assets/${cardIcon}.png`"
+    label="{{label}}"
     class="expansion-card q-mx-md q-mb-md"
     expand-icon="img:src/assets/down-arrow.png"
     header-class="expansion-card__header"

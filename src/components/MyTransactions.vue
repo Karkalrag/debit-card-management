@@ -48,7 +48,7 @@ const myTransactions = ref([
 </script>
 
 <template>
-  <ExpansionCard>
+  <ExpansionCard label="Recent Transactions" card-icon="arrows-group">
     <q-card class="column rounded-borders">
       <TransactionItem
         v-for="transaction in myTransactions"
