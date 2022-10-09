@@ -107,7 +107,9 @@ const cancelDebitCard = () => {
         :is-card-frozen="isSelectedCardForzen()"
         @onCancel="onCancel"
       />
-      <MyTransactions />
+      <div class="my-debit-cards__expansion-sections-container q-pa-md">
+        <MyTransactions />
+      </div>
     </div>
   </div>
 </template>
@@ -125,5 +127,8 @@ const cancelDebitCard = () => {
   background-color: $primary;
   position: relative;
   z-index: 10;
+}
+.my-debit-cards__expansion-sections-container {
+  background-color: $white;
 }
 </style>
