@@ -38,17 +38,18 @@ const allActions = ref([
 </script>
 
 <template>
-  <q-btn-group spread rounded class="debit-card-actions">
+  <q-btn-group spread rounded class="debit-card-actions justify-around q-pa-md">
     <q-btn
       v-for="action in allActions"
       :key="action.name"
-      :label="action.name"
-      :icon="'img:src/assets/' + action.icon + '.png'"
       no-caps
-      class="debit-card-action__action-text"
+      class="debit-card-actions__button"
       :disable="action.name !== 'Freeze card' && props.isCardFrozen"
       @click="$emit(action.emit)"
-    />
+    >
+      <img :src="`src/assets/${action.icon}.png`" class="q-mb-sm" />
+      <div class="debit-card-actions__button__label">{{ action.name }}</div>
+    </q-btn>
   </q-btn-group>
 </template>
 
@@ -61,8 +62,16 @@ const allActions = ref([
   border-bottom-right-radius: 0;
 }
 
-.debit-card-action__action-text {
+.debit-card-actions__button {
   color: $primary;
+  padding: 0;
+  font-size: 0.75rem;
+  width: 100% !important;
+  max-width: 3.75rem !important;
+}
+
+.debit-card-actions__button__label {
+  line-height: 1.4;
 }
 
 .debit-card-action__image-box {
