@@ -27,19 +27,10 @@ const currentCardId = ref(props.selectedCardId);
   >
     <template v-slot:navigation-icon="{ active, onClick }">
       <q-btn
-        v-if="active"
-        style="background: #01d167; opacity: 1"
-        size="xs"
+        class="cards-carousel__control-button"
+        :style="{ opacity: active ? 1 : 0.2 }"
         dense
-        round
         rounded
-      />
-      <q-btn
-        v-else
-        style="background: #01d167; opacity: 0.1"
-        round
-        size="xs"
-        dense
         @click="onClick"
       />
     </template>
@@ -60,3 +51,13 @@ const currentCardId = ref(props.selectedCardId);
     </q-carousel-slide>
   </q-carousel>
 </template>
+
+<style scoped lang="scss">
+.my-debit-cards-carousel {
+  max-height: 16.625rem;
+}
+.cards-carousel__control-button {
+  font-size: 0.25rem;
+  background-color: #01d167;
+}
+</style>
