@@ -32,6 +32,7 @@ const currentCardId = ref(props.selectedCardId);
         dense
         rounded
         @click="onClick"
+        id="carousel-btn"
       />
     </template>
     <q-carousel-slide

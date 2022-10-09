@@ -46,7 +46,7 @@ const onFocus = (newVal: any) => {
   });
 };
 
-const isSelectedCardForzen = () => {
+const isSelectedCardFrozen = () => {
   let isFrozen = false;
   allDebitCards.value.forEach(function (card: any) {
     if (card.id === selectedCardId.value) {
@@ -78,7 +78,14 @@ const cancelDebitCard = () => {
     }
   });
   allDebitCards.value.splice(cardIndex, 1);
-  selectedCardId.value = allDebitCards.value[0].id;
+  if (allDebitCards.value && allDebitCards.value.length > 0) {
+    selectedCardId.value = allDebitCards.value[0].id;
+    //TODO this is a temporary solution to move the carousel, need to do it via Vue/Quasar
+    let element: HTMLElement = document.getElementsByClassName(
+      "cards-carousel__control-button"
+    )[1] as HTMLElement;
+    element.click();
+  }
   openCancelConfirm.value = false;
 };
 </script>
@@ -105,7 +112,7 @@ const cancelDebitCard = () => {
       <DebitCardActions
         @onFreeze="handleFreeze"
         :debit-card-number="selectedCardId"
-        :is-card-frozen="isSelectedCardForzen()"
+        :is-card-frozen="isSelectedCardFrozen()"
         @onCancel="onCancel"
       />
       <div class="my-debit-cards__expansion-sections-container q-py-md">
