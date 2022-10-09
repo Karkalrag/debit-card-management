@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 const props = defineProps({
   isCardFrozen: Boolean,
   debitCardId: Number,
@@ -7,9 +7,13 @@ const props = defineProps({
 
 defineEmits(["onFreeze", "onClick", "onCancel"]);
 
+const freezeCardName = computed(() => {
+  return props.isCardFrozen ? "Un-Freeze card" : "Freeze card";
+});
+
 const allActions = ref([
   {
-    name: props.isCardFrozen ? "Un-Freeze card" : "Freeze card",
+    name: freezeCardName,
     icon: "freeze-card",
     emit: "onFreeze",
   },
@@ -44,7 +48,7 @@ const allActions = ref([
       :key="action.name"
       no-caps
       class="debit-card-actions__button"
-      :disable="action.name !== 'Freeze card' && props.isCardFrozen"
+      :disable="action.name !== freezeCardName && props.isCardFrozen"
       @click="$emit(action.emit)"
     >
       <img :src="`src/assets/${action.icon}.png`" class="q-mb-sm" />
