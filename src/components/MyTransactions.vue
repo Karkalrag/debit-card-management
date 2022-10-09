@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TransactionItem from "@/components/TransactionItem.vue";
 import { ref } from "vue";
+import ExpansionCard from "@/components/common/ExpansionCard.vue";
 
 const myTransactions = ref([
   {
@@ -47,13 +48,7 @@ const myTransactions = ref([
 </script>
 
 <template>
-  <q-expansion-item
-    expand-separator
-    icon="img:src/assets/arrows-group.png"
-    label="Recent transactions"
-    class="my-transactions-header-style"
-    expand-icon="img:src/assets/down-arrow.png"
-  >
+  <ExpansionCard>
     <q-card class="column rounded-borders">
       <TransactionItem
         v-for="transaction in myTransactions"
@@ -73,7 +68,7 @@ const myTransactions = ref([
     >
       View all card transactions
     </q-card>
-  </q-expansion-item>
+  </ExpansionCard>
 </template>
 
 <style scoped lang="scss">
