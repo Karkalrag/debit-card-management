@@ -38,9 +38,10 @@ const allActions = ref([
 </script>
 
 <template>
-  <q-btn-group spread rounded class="debit-card-action">
+  <q-btn-group spread rounded class="debit-card-actions">
     <q-btn
       v-for="action in allActions"
+      :key="action.name"
       :label="action.name"
       :icon="'img:src/assets/' + action.icon + '.png'"
       no-caps
@@ -54,8 +55,10 @@ const allActions = ref([
 <style scoped lang="scss">
 @import "../styles/quasar.variables.scss";
 
-.debit-card-action {
+.debit-card-actions {
   background-color: $actions-bg;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .debit-card-action__action-text {

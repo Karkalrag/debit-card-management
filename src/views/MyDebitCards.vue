@@ -100,22 +100,30 @@ const cancelDebitCard = () => {
         />
       </MainLayout>
     </div>
-    <DebitCardActions
-      @onFreeze="handleFreeze"
-      :debit-card-number="selectedCardId"
-      :is-card-frozen="isSelectedCardForzen()"
-      @onCancel="onCancel"
-    />
-    <MyTransactions />
+    <div class="my-debit-cards__scrollable-sections">
+      <DebitCardActions
+        @onFreeze="handleFreeze"
+        :debit-card-number="selectedCardId"
+        :is-card-frozen="isSelectedCardForzen()"
+        @onCancel="onCancel"
+      />
+      <MyTransactions />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import "@/styles/quasar.variables.scss";
 .my-debit-cards-carousel {
   background: transparent;
 }
 .my-debit-cards__top-section {
   position: sticky;
   top: 0;
+}
+.my-debit-cards__scrollable-sections {
+  background-color: $primary;
+  position: relative;
+  z-index: 10;
 }
 </style>

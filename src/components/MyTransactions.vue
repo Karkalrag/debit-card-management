@@ -73,15 +73,6 @@ const myTransactions = ref([
 
 <style scoped lang="scss">
 @import "@/styles/quasar.variables.scss";
-.my-transactions-header-style {
-  width: 23.125rem;
-  background-color: $collapse-header-bg;
-  color: $collapse-header-text;
-  font-size: 0.875rem;
-  font-weight: bold;
-  border-radius: 0.3125rem;
-  box-shadow: 0 0 0.5rem #0000000a;
-}
 
 .my-transactions-all-transactions-btn {
   background-color: $all-action-btn-bg;
