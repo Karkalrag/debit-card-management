@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { RouteRecordName } from "vue-router";
 import DesktopNavItem from "./DesktopNavItem.vue";
 type NavListItem = {
-  name: string;
+  name: RouteRecordName | undefined;
   path: string;
-  icon: string;
+  icon: RouteRecordName | undefined;
 };
 
 type Props = {
@@ -24,7 +25,10 @@ defineProps<Props>();
     </p>
     <nav>
       <template v-for="navItem in navList" :key="navItem.name">
-        <DesktopNavItem :title="navItem.name" :icon="navItem.icon" />
+        <DesktopNavItem
+          :title="`${String(navItem.name)}`"
+          :icon="`${String(navItem.icon)}`"
+        />
       </template>
     </nav>
   </div>
