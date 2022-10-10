@@ -4,6 +4,6 @@ import ExpansionCard from "@/components/common/ExpansionCard.vue";
 
 <template>
   <ExpansionCard label="Card Details" card-icon="card-details">
-    <q-card class="column rounded-borders"> Card details content </q-card>
+    <div class="q-px-lg q-py-md">Card details content</div>
   </ExpansionCard>
 </template>

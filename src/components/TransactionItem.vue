@@ -66,7 +66,6 @@ const formattedTransactionAmount = computed(
 <style scoped lang="scss">
 .transaction-item {
   background-color: white;
-  width: 23.125rem;
 }
 
 .transaction-item__image-box {
@@ -88,7 +87,7 @@ const formattedTransactionAmount = computed(
 .transaction-item__transaction-name {
   font-size: 0.875rem;
   color: black;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .transaction-item__transaction-date {
@@ -100,7 +99,7 @@ const formattedTransactionAmount = computed(
 .transaction-item__transaction-desc {
   color: #325baf;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
 }
 

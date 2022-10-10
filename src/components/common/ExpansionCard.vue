@@ -20,7 +20,7 @@ defineProps({
 @import "@/styles/quasar.variables.scss";
 .expansion-card {
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: 0.3125rem;
   box-shadow: 0 0 0.5rem #0000000a;
   border: 1px solid #f0f0f0;

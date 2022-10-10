@@ -6,12 +6,15 @@ const tab = ref("my-cards");
 
 <template>
   <q-tabs v-model="tab" class="text-white inline" indicator-color="tabblue">
-    <q-tab no-caps name="my-cards" label="My debit cards" class="q-px-none" />
+    <q-tab no-caps name="my-cards" class="q-px-none">
+      <div class="text-weight-bolder">My debit cards</div>
+    </q-tab>
     <q-tab
       no-caps
       name="all-cards"
-      label="All company cards"
-      class="q-px-none q-ml-lg"
-    />
+      class="q-px-none q-ml-lg text-weight-bolder"
+    >
+      <div class="text-weight-bolder">All company cards</div>
+    </q-tab>
   </q-tabs>
 </template>
