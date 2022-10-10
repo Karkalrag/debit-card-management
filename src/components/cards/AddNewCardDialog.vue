@@ -3,29 +3,31 @@ import { ref } from "vue";
 
 export default {
   emits: ["new-card-added"],
-  methods: {
-    onSubmit() {
-      this.$emit("new-card-added", {
-        firstName: this.firstName,
-        lastName: this.lastName,
-      });
-    },
-  },
-  setup() {
+  setup(_, context) {
     const firstName = ref(null);
     const lastName = ref(null);
     const validate = (value: string) => {
       return value && value.length > 0 && /^[a-zA-Z]+$/.test(value);
     };
+
+    const onSubmit = () => {
+      context.emit("new-card-added", {
+        firstName: firstName.value,
+        lastName: lastName.value,
+      });
+    };
+
+    const onReset = () => {
+      firstName.value = null;
+      lastName.value = null;
+    };
+
     return {
       firstName,
       lastName,
       validate,
-
-      onReset() {
-        firstName.value = null;
-        lastName.value = null;
-      },
+      onSubmit,
+      onReset,
     };
   },
 };
