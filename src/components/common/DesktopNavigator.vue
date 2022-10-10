@@ -18,7 +18,7 @@ defineProps<Props>();
   <div class="desktop-navigator q-pa-xl fixed">
     <img
       class="desktop-navigator__app-logo q-mb-md"
-      src="src/assets/logo-main.png"
+      src="@/assets/logo-main.png"
     />
     <p class="desktop-navigator__app-subtitle">
       Trusted way of banking for 3,000+ SMEs and startups in Singapore

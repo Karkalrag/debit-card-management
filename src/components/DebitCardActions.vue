@@ -60,7 +60,7 @@ const allActions = ref([
       :disable="action.name !== freezeCardName && props.isCardFrozen"
       @click="$emit(action.emit)"
     >
-      <img :src="`src/assets/${action.icon}.png`" class="q-mb-sm" />
+      <img :src="`@/assets/${action.icon}.png`" class="q-mb-sm" />
       <div class="debit-card-actions__button__label">{{ action.name }}</div>
     </q-btn>
   </q-btn-group>

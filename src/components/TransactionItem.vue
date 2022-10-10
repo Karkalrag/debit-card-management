@@ -6,7 +6,7 @@
         :style="{ background: categoryColor }"
       >
         <img
-          :src="`src/assets/${categoryImage}.png`"
+          :src="`@/assets/${categoryImage}.png`"
           class="transaction-item__image-box__image"
         />
       </div>
@@ -20,7 +20,7 @@
       </p>
       <q-card-section class="row items-center" horizontal>
         <div class="transaction-item__image">
-          <img src="../assets/business-and-finance.png" />
+          <img src="@/assets/business-and-finance.png" />
         </div>
         <p class="transaction-item__transaction-desc q-ma-none q-ml-sm">
           {{ transactionDesc }}
@@ -35,7 +35,7 @@
       >
         {{ formattedTransactionAmount }}
       </b>
-      <img src="../assets/next.png" class="transaction-item__next" />
+      <img src="@/assets/next.png" class="transaction-item__next" />
     </q-card-section>
   </q-card>
   <q-separator class="q-mx-lg" color="light-grey" />

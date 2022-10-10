@@ -9,7 +9,7 @@ defineProps({
   <div class="mobile-nav-item text-center">
     <img
       class="mobile-nav-item__icon"
-      :src="`src/assets/navigation/${icon}.png`"
+      :src="`@/assets/navigation/${icon}.png`"
     />
     <div>{{ title }}</div>
   </div>
