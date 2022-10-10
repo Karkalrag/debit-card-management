@@ -8,7 +8,7 @@ defineEmits(["add-new-card-dialog-shown"]);
 </script>
 
 <template>
-  <div class="text-right">
+  <div v-if="isMobileScreen" class="text-right">
     <img class="cards-header__logo" src="@/assets/logo-mobile.png" />
   </div>
   <div
