@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 export default {
   emits: ["new-card-added"],
-  setup(_, context) {
+  setup(_: any, context: any) {
     const firstName = ref(null);
     const lastName = ref(null);
     const validate = (value: string) => {
@@ -42,7 +42,7 @@ export default {
         v-model="firstName"
         label="First Name *"
         lazy-rules
-        :rules="[(val) => validate(val) || 'Please enter a valid First Name']"
+        :rules="[(val: string) => validate(val) || 'Please enter a valid First Name']"
       />
 
       <q-input
