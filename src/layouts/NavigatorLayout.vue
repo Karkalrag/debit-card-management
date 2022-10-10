@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import AppNavigator from "@/components/common/AppNavigation.vue";
-import { useQuasar } from "quasar";
-import { computed } from "vue";
+import helpers from "@/helpers/helpers";
 
-const $q = useQuasar();
-const isMobileScreen = computed(() => $q.screen.lt.md);
+const { isMobileScreen } = helpers();
 </script>
 
 <template>

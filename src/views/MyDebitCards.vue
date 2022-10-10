@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import DebitCardActions from "@/components/DebitCardActions.vue";
 import ConfirmCancelModal from "@/components/ConfirmCancelModal.vue";
 import CardsHeader from "@/components/cards/CardsHeader.vue";
@@ -7,10 +7,9 @@ import CardTabs from "@/components/cards/CardTabs.vue";
 import CardsCarousel from "@/components/cards/CardsCarousel.vue";
 import MyTransactions from "@/components/MyTransactions.vue";
 import CardDetails from "@/components/CardDetails.vue";
-import { useQuasar } from "quasar";
+import helpers from "@/helpers/helpers";
 
-const $q = useQuasar();
-const isMobileScreen = computed(() => $q.screen.lt.md);
+const { isMobileScreen } = helpers();
 
 const allDebitCards = ref([
   {
@@ -94,7 +93,7 @@ const cancelDebitCard = () => {
 </script>
 
 <template>
-  <div class="my-debit-cards">
+  <div :class="`my-debit-cards${isMobileScreen ? '' : '--desktop'}`">
     <div
       :class="`my-debit-cards__top-section${
         isMobileScreen ? '' : '--desktop'
@@ -103,6 +102,7 @@ const cancelDebitCard = () => {
       <CardsHeader />
       <CardTabs class="q-mt-lg" />
       <CardsCarousel
+        v-if="isMobileScreen"
         :selected-card-id="selectedCardId"
         :all-debit-cards="allDebitCards"
         @onFocus="onFocus"
@@ -118,12 +118,20 @@ const cancelDebitCard = () => {
         isMobileScreen ? '' : '--desktop'
       }`"
     >
-      <DebitCardActions
-        @onFreeze="handleFreeze"
-        :debit-card-number="selectedCardId"
-        :is-card-frozen="isSelectedCardFrozen()"
-        @onCancel="onCancel"
-      />
+      <div class="my-debit-cards__scrollable-sections--desktop__left-section">
+        <CardsCarousel
+          v-if="!isMobileScreen"
+          :selected-card-id="selectedCardId"
+          :all-debit-cards="allDebitCards"
+          @onFocus="onFocus"
+        />
+        <DebitCardActions
+          @onFreeze="handleFreeze"
+          :debit-card-number="selectedCardId"
+          :is-card-frozen="isSelectedCardFrozen()"
+          @onCancel="onCancel"
+        />
+      </div>
       <div class="my-debit-cards__expansion-sections-container q-py-md">
         <CardDetails />
         <MyTransactions />
@@ -152,8 +160,22 @@ const cancelDebitCard = () => {
 }
 .my-debit-cards__scrollable-sections--desktop {
   background-color: white;
+  display: flex;
+  box-shadow: 0 0.125rem 0.75rem #00000014;
+  padding: 2.5rem;
+  .my-debit-cards__scrollable-sections--desktop__left-section {
+    margin-right: 2.5rem;
+  }
 }
 .my-debit-cards__expansion-sections-container {
   background-color: $white;
+  justify-content: space-around;
+  flex: 1;
+}
+.my-debit-cards__scrollable-sections--desktop__left-section {
+  flex: 1;
+}
+.my-debit-cards--desktop {
+  padding: 3.75rem;
 }
 </style>

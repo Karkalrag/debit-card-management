@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import helpers from "@/helpers/helpers";
 const props = defineProps({
   isCardFrozen: Boolean,
   debitCardId: Number,
 });
 
 defineEmits(["onFreeze", "onClick", "onCancel"]);
+
+const { isMobileScreen } = helpers();
 
 const freezeCardName = computed(() => {
   return props.isCardFrozen ? "Un-Freeze card" : "Freeze card";
@@ -42,7 +45,13 @@ const allActions = ref([
 </script>
 
 <template>
-  <q-btn-group spread rounded class="debit-card-actions justify-around q-pa-md">
+  <q-btn-group
+    flat
+    spread
+    rounded
+    class="debit-card-actions justify-around q-pa-md"
+    :class="{ 'debit-card-actions--desktop': !isMobileScreen }"
+  >
     <q-btn
       v-for="action in allActions"
       :key="action.name"
@@ -62,8 +71,14 @@ const allActions = ref([
 
 .debit-card-actions {
   background-color: $actions-bg;
+  border-radius: 1rem;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.debit-card-actions--desktop {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .debit-card-actions__button {

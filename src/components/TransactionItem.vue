@@ -116,8 +116,8 @@ const formattedTransactionAmount = computed(
   font-weight: bold;
 }
 .transaction-item__next {
-  width: 0.625rem;
-  height: 0.625rem;
+  width: auto;
+  height: 0.75rem;
   margin-left: 0.625rem;
   margin-top: 0.3125rem;
 }

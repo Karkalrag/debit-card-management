@@ -52,6 +52,7 @@ const formattedCardNumber = computed(() => {
   width: 100%;
   max-width: 22.375rem;
   border-radius: 0.75rem;
+  margin: 0 auto;
 }
 .debit-card__aspire-logo,
 .debit-card__visa-logo {

@@ -17,11 +17,6 @@ const router = createRouter({
       component: MyDebitCards,
     },
     {
-      path: "/new-card",
-      name: "new-card",
-      component: AddNewCard,
-    },
-    {
       path: "/payments",
       name: "payments",
       component: DebitCardActions,
