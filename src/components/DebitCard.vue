@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import helpers from "@/helpers/helpers";
+import { date } from "quasar";
+
+const { isMobileScreen } = helpers();
 
 const props = defineProps({
   cardHolderName: String,
   cardNumber: String,
-  expiryDate: String,
+  expiryDate: Date,
   color: String,
   isCardFrozen: Boolean,
 });
@@ -16,11 +20,16 @@ const formattedCardNumber = computed(() => {
 
   return "";
 });
+
+const formattedExpiryDate = computed(() =>
+  date.formatDate(props.expiryDate, "MM / YY")
+);
 </script>
 
 <template>
   <q-card
     class="debit-card"
+    :class="{ 'debit-card--desktop': !isMobileScreen }"
     :style="{ backgroundColor: color, opacity: props.isCardFrozen ? 0.2 : 1 }"
   >
     <q-card-section class="q-pa-lg column">
@@ -33,7 +42,7 @@ const formattedCardNumber = computed(() => {
       <p class="debit-card__card-number">{{ formattedCardNumber }}</p>
       <q-card flat class="debit-card__expiry-cvv-box">
         <q-card-section horizontal class="row">
-          <p class="debit-card__expiry">Thru: {{ expiryDate }}</p>
+          <p class="debit-card__expiry">Thru: {{ formattedExpiryDate }}</p>
           <q-space />
           <p class="debit-card__expiry">CVV: ***</p>
         </q-card-section>
@@ -53,6 +62,9 @@ const formattedCardNumber = computed(() => {
   max-width: 22.375rem;
   border-radius: 0.75rem;
   margin: 0 auto;
+}
+.debit-card--desktop {
+  max-width: 26.875rem;
 }
 .debit-card__aspire-logo,
 .debit-card__visa-logo {

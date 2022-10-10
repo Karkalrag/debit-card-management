@@ -8,35 +8,40 @@ import CardsCarousel from "@/components/cards/CardsCarousel.vue";
 import MyTransactions from "@/components/MyTransactions.vue";
 import CardDetails from "@/components/CardDetails.vue";
 import helpers from "@/helpers/helpers";
+import AddNewCardDialog from "../components/cards/AddNewCardDialog.vue";
+import { date } from "quasar";
 
 const { isMobileScreen } = helpers();
+const { addToDate } = date;
 
 const allDebitCards = ref([
   {
     id: 1,
     name: "Jack Reacher",
-    number: "1111111111111111",
-    expiresOn: "12/12",
+    number: "2213424342323232",
+    expiresOn: new Date("12/12/22"),
     color: "#01D167",
     isCardFrozen: false,
   },
   {
     id: 2,
     name: "Jack 1",
-    number: "2222222222222222",
-    expiresOn: "12/12",
+    number: "9087425798649018",
+    expiresOn: new Date("10/24/22"),
     color: "#536DFF",
     isCardFrozen: false,
   },
   {
     id: 3,
     name: "Jack 2",
-    number: "3333333333333333",
-    expiresOn: "12/12",
+    number: "1696701730771644",
+    expiresOn: new Date("01/12/23"),
     color: "#01D167",
     isCardFrozen: false,
   },
 ]);
+
+const isAddCardDialogVisible = ref(false);
 const selectedCardId = ref(1);
 const openCancelConfirm = ref(false);
 
@@ -90,6 +95,34 @@ const cancelDebitCard = () => {
   }
   openCancelConfirm.value = false;
 };
+
+const onAddNewCard = ({
+  firstName,
+  lastName,
+}: {
+  firstName: string;
+  lastName: string;
+}) => {
+  const newCardId = Number(Math.random().toString().slice(2, 4));
+  const randomCardNumber = Math.random().toString().slice(2, 18);
+  const randomExpiryDate = addToDate(new Date(), {
+    months: newCardId,
+  });
+  const newCardToBeAdded = {
+    id: newCardId,
+    name: `${firstName} ${lastName}`,
+    number: randomCardNumber,
+    expiresOn: randomExpiryDate,
+    color: "#01D167",
+    isCardFrozen: false,
+  };
+
+  allDebitCards.value = [...allDebitCards.value, newCardToBeAdded];
+
+  isAddCardDialogVisible.value = false;
+
+  selectedCardId.value = newCardId;
+};
 </script>
 
 <template>
@@ -99,18 +132,13 @@ const cancelDebitCard = () => {
         isMobileScreen ? '' : '--desktop'
       } q-px-lg q-pt-lg q-pb-xs`"
     >
-      <CardsHeader />
+      <CardsHeader @add-new-card-dialog-shown="isAddCardDialogVisible = true" />
       <CardTabs class="q-mt-lg" />
       <CardsCarousel
         v-if="isMobileScreen"
         :selected-card-id="selectedCardId"
         :all-debit-cards="allDebitCards"
         @onFocus="onFocus"
-      />
-      <ConfirmCancelModal
-        :display-modal="openCancelConfirm"
-        @onCancelAction="onCancelAction"
-        @onConfirmAction="cancelDebitCard"
       />
     </div>
     <div
@@ -138,6 +166,14 @@ const cancelDebitCard = () => {
       </div>
     </div>
   </div>
+  <ConfirmCancelModal
+    :display-modal="openCancelConfirm"
+    @onCancelAction="onCancelAction"
+    @onConfirmAction="cancelDebitCard"
+  />
+  <q-dialog v-model="isAddCardDialogVisible">
+    <AddNewCardDialog @new-card-added="onAddNewCard" />
+  </q-dialog>
 </template>
 
 <style lang="scss" scoped>

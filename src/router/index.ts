@@ -1,5 +1,4 @@
 import MyDebitCards from "@/views/MyDebitCards.vue";
-import AddNewCard from "@/views/AddNewCard.vue";
 import DebitCardActions from "@/components/DebitCardActions.vue";
 import { createRouter, createWebHistory } from "vue-router";
 

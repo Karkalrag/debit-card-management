@@ -2,7 +2,7 @@ export type DebitCard = {
   id: number;
   name: string;
   number: string;
-  expiresOn: string;
+  expiresOn: Date;
   color: string;
   isCardFrozen: boolean;
 };

@@ -52,7 +52,11 @@ const recentTransactions = ref([
 </script>
 
 <template>
-  <ExpansionCard label="Recent Transactions" card-icon="arrows-group">
+  <ExpansionCard
+    default-expanded
+    label="Recent Transactions"
+    card-icon="arrows-group"
+  >
     <q-card class="column rounded-borders">
       <TransactionItem
         v-for="transaction in recentTransactions"

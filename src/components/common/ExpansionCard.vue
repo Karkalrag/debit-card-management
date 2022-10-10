@@ -2,10 +2,12 @@
 defineProps({
   cardIcon: String,
   label: String,
+  defaultExpanded: Boolean,
 });
 </script>
 <template>
   <q-expansion-item
+    :default-opened="defaultExpanded"
     :icon="`img:src/assets/${cardIcon}.png`"
     :label="label"
     class="expansion-card q-mx-md q-mb-md"
