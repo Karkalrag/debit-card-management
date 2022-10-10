@@ -26,9 +26,13 @@ const navList = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@import "@/styles/quasar.variables.scss";
 .app-navigation--mobile {
+  background-color: $white;
   left: 0;
   bottom: 0;
   right: 0;
+  z-index: 9999;
+  box-shadow: 0 -0.1875rem 0.375rem #00000014;
 }
 </style>
