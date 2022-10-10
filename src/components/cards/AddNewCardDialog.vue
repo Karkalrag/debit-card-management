@@ -32,7 +32,8 @@ export default {
 </script>
 
 <template>
-  <div class="q-pa-md add-new-card-dialog" style="max-width: 400px">
+  <div class="q-pa-md add-new-card-dialog">
+    <div class="text-h6 q-mb-lg">Add new card</div>
     <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
       <q-input
         filled
@@ -50,7 +51,7 @@ export default {
         :rules="[(val) => validate(val) || 'Please enter a valid Last Name']"
       />
 
-      <div>
+      <div class="q-mt-lg">
         <q-btn label="Submit" type="submit" color="primary" />
         <q-btn
           label="Close"
