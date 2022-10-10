@@ -8,6 +8,9 @@ defineEmits(["add-new-card-dialog-shown"]);
 </script>
 
 <template>
+  <div class="text-right">
+    <img class="cards-header__logo" src="@/assets/logo-mobile.png" />
+  </div>
   <div
     class="cards-header flex justify-between"
     :class="{ 'cards-header--desktop': !isMobileScreen }"
@@ -41,5 +44,9 @@ defineEmits(["add-new-card-dialog-shown"]);
   padding: 0.125rem 0.75rem;
   font-size: 0.75rem;
   height: 100%;
+}
+.cards-header__logo {
+  width: 1.625rem;
+  height: auto;
 }
 </style>
