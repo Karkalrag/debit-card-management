@@ -68,7 +68,7 @@ const recentTransactions = ref([
       />
     </q-card>
     <q-card
-      class="column my-transactions-all-transactions-btn flex-center cursor-pointer"
+      class="column my-transactions__all-transactions-btn text-weight-medium flex-center cursor-pointer q-pa-md"
     >
       View all card transactions
     </q-card>
@@ -78,12 +78,9 @@ const recentTransactions = ref([
 <style scoped lang="scss">
 @import "@/styles/quasar.variables.scss";
 
-.my-transactions-all-transactions-btn {
+.my-transactions__all-transactions-btn {
   background-color: $all-action-btn-bg;
-  height: 3.125rem;
   color: $all-action-btn-text;
   font-size: 0.8125rem;
-  font-weight: 500;
-  border-radius: 0.625rem !important;
 }
 </style>

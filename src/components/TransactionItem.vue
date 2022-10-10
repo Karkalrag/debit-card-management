@@ -80,8 +80,8 @@ const formattedTransactionAmount = computed(
 }
 
 .transaction-item__image-box__image {
-  width: 0.9375rem;
-  height: 0.9375rem;
+  width: 1rem;
+  height: auto;
   text-align: center;
 }
 
