@@ -26,7 +26,6 @@ const currentCardId = ref(props.selectedCardId);
     transition-prev="slide-right"
     transition-next="slide-left"
     class="my-debit-cards-carousel flex-center q-mt-md"
-    :class="{ 'my-debit-cards-carousel--desktop': !isMobileScreen }"
     @transition="$emit('onFocus', currentCardId)"
   >
     <template v-slot:navigation-icon="{ active, onClick }">
@@ -59,9 +58,6 @@ const currentCardId = ref(props.selectedCardId);
 
 <style scoped lang="scss">
 .my-debit-cards-carousel {
-  max-height: 16.625rem;
-}
-.my-debit-cards-carousel--desktop {
   max-height: 19rem;
 }
 .cards-carousel__control-button {

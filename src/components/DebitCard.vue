@@ -45,7 +45,7 @@ const formattedExpiryDate = computed(() =>
 </script>
 
 <template>
-  <div class="debit-card">
+  <div class="debit-card" :class="{ 'debit-card--desktop': !isMobileScreen }">
     <div class="text-right">
       <span
         class="debit-card__show-card-number inline bg-white row inline items-center"
@@ -95,11 +95,16 @@ const formattedExpiryDate = computed(() =>
 </template>
 
 <style scoped lang="scss">
-.debit-card__container {
+.debit-card {
   width: 100%;
   max-width: 22.375rem;
-  border-radius: 0.75rem;
   margin: 0 auto;
+}
+.debit-card--desktop {
+  max-width: 25.625rem;
+}
+.debit-card__container {
+  border-radius: 0.75rem;
 }
 .debit-card__container--desktop {
   max-width: 25.625rem;
