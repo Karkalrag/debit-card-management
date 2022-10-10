@@ -2,11 +2,14 @@
 import MobileNavItem from "@/components/common/MobileNavItem.vue";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+import DesktopNavigator from "@/components/common/DesktopNavigator.vue";
 
 const router = useRouter();
+const $q = useQuasar();
 
 const noNavItems: string[] = ["new-card"];
-
+const isMobileScreen = computed(() => $q.screen.lt.md);
 const navList = computed(() => {
   return router.options.routes.map(({ name, path }) => ({
     name,
@@ -17,7 +20,10 @@ const navList = computed(() => {
 </script>
 
 <template>
-  <nav class="app-navigation--mobile row justify-between q-px-lg q-py-md fixed">
+  <nav
+    v-if="isMobileScreen"
+    class="app-navigation--mobile row justify-between q-px-lg q-py-md fixed"
+  >
     <template v-for="navItem in navList" :key="navItem.name">
       <MobileNavItem
         v-if="!noNavItems.includes(navItem.name as string)"
@@ -26,6 +32,11 @@ const navList = computed(() => {
       />
     </template>
   </nav>
+  <DesktopNavigator
+    v-else
+    :nav-list="navList"
+    class="app-navigation--desktop"
+  />
 </template>
 
 <style scoped lang="scss">
