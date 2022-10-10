@@ -50,7 +50,7 @@ export default {
         v-model="lastName"
         label="Last Name *"
         lazy-rules
-        :rules="[(val) => validate(val) || 'Please enter a valid Last Name']"
+        :rules="[(val: string) => validate(val) || 'Please enter a valid Last Name']"
       />
 
       <div class="q-mt-lg">
