@@ -9,7 +9,7 @@ defineProps({
   <div class="desktop-nav-item row items-center">
     <img
       class="desktop-nav-item__icon q-mr-sm"
-      :src="`@/assets/navigation/${icon}.png`"
+      :src="`/assets/icons/navigation/${icon}.png`"
     />
     <div>{{ title }}</div>
   </div>

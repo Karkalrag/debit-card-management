@@ -13,7 +13,9 @@ const { isMobileScreen } = helpers();
   >
     <img
       class="add-new-card-button__icon"
-      :src="`@/assets/add-${isMobileScreen ? 'mobile' : 'desktop'}.png`"
+      :src="`/assets/icons/actions/add-${
+        isMobileScreen ? 'mobile' : 'desktop'
+      }.png`"
     />
     <div class="q-ml-sm">New card</div>
   </q-btn>

@@ -6,7 +6,7 @@
         :style="{ background: categoryColor }"
       >
         <img
-          :src="`@/assets/${categoryImage}.png`"
+          :src="`/assets/icons/transactions/${categoryImage}.png`"
           class="transaction-item__image-box__image"
         />
       </div>
