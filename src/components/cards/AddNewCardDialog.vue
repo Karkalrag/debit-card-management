@@ -52,8 +52,9 @@ export default {
       />
 
       <div class="q-mt-lg">
-        <q-btn label="Submit" type="submit" color="primary" />
+        <q-btn no-caps label="Add" type="submit" color="primary" />
         <q-btn
+          no-caps
           label="Close"
           type="reset"
           color="primary"
