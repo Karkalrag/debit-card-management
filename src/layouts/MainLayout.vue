@@ -1,5 +1,5 @@
 <template>
-  <main class="main-layout q-pa-lg">
+  <main class="main-layout q-px-lg q-pt-lg q-pb-xs">
     <slot />
   </main>
 </template>
