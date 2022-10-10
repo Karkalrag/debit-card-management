@@ -30,6 +30,10 @@
   </ol>
 </details>
 
+## Demo
+
+Demo Link: [https://karthik-debit-card-management.netlify.app/](https://karthik-debit-card-management.netlify.app/)
+
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
@@ -112,7 +116,7 @@ npm run lint
 - [x] Mobile version
 - [x] Desktop version
 - [x] Quasar integration
-- [ ] Create new debit card
+- [x] Create new debit card
 - [x] Freeze card
 - [x] Cancel card
 
