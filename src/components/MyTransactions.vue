@@ -3,46 +3,50 @@ import TransactionItem from "@/components/TransactionItem.vue";
 import { ref } from "vue";
 import ExpansionCard from "@/components/common/ExpansionCard.vue";
 
-const myTransactions = ref([
+const recentTransactions = ref([
   {
-    transactionName: "Transaction 1",
-    transactionDate: "20 May 2020",
-    transactionDesc: "Refund on debit card",
-    debitOrCredit: "cr",
+    id: 1,
+    name: "Transaction 1",
+    date: "20 May 2020",
+    desc: "Refund on debit card",
+    type: "cr",
     currency: "S$",
     amount: "100",
-    logoColor: "#009DFF1A",
-    image: "file-storage.png",
+    categoryColor: "#009DFF1A",
+    categoryImage: "file-storage",
   },
   {
-    transactionName: "Transaction 2",
-    transactionDate: "20 May 2020",
-    transactionDesc: "Refund on debit card",
-    debitOrCredit: "cr",
+    id: 2,
+    name: "Transaction 2",
+    date: "20 May 2020",
+    desc: "Refund on debit card",
+    type: "cr",
     currency: "S$",
     amount: "100",
-    logoColor: "#00D6B51A",
-    image: "flights.png",
+    categoryColor: "#00D6B51A",
+    categoryImage: "flights",
   },
   {
-    transactionName: "Transaction 3",
-    transactionDate: "20 May 2020",
-    transactionDesc: "Refund on debit card",
-    debitOrCredit: "dr",
+    id: 3,
+    name: "Transaction 3",
+    date: "20 May 2020",
+    desc: "Charged to debit card",
+    type: "dr",
     currency: "S$",
     amount: "100",
-    logoColor: "#F251951A",
-    image: "megaphone.png",
+    categoryColor: "#F251951A",
+    categoryImage: "megaphone",
   },
   {
-    transactionName: "Transaction 1",
-    transactionDate: "20 May 2020",
-    transactionDesc: "Refund on debit card",
-    debitOrCredit: "cr",
+    id: 4,
+    name: "Transaction 1",
+    date: "20 May 2020",
+    desc: "Refund on debit card",
+    type: "cr",
     currency: "S$",
     amount: "100",
-    logoColor: "#009DFF1A",
-    image: "file-storage.png",
+    categoryColor: "#009DFF1A",
+    categoryImage: "file-storage",
   },
 ]);
 </script>
@@ -51,16 +55,16 @@ const myTransactions = ref([
   <ExpansionCard label="Recent Transactions" card-icon="arrows-group">
     <q-card class="column rounded-borders">
       <TransactionItem
-        v-for="transaction in myTransactions"
-        :key="transaction.transactionDate"
-        :transaction-name="transaction.transactionName"
-        :transaction-date="transaction.transactionDate"
-        :transaction-desc="transaction.transactionDesc"
-        :debit-or-credit="transaction.debitOrCredit"
+        v-for="transaction in recentTransactions"
+        :key="transaction.id"
+        :transaction-name="transaction.name"
+        :transaction-date="transaction.date"
+        :transaction-desc="transaction.desc"
+        :transaction-type="transaction.type"
         :currency="transaction.currency"
         :amount="transaction.amount"
-        :logo-color="transaction.logoColor"
-        :image="transaction.image"
+        :category-color="transaction.categoryColor"
+        :category-image="transaction.categoryImage"
       />
     </q-card>
     <q-card

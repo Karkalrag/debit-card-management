@@ -1,54 +1,66 @@
 <template>
-  <q-card class="transaction-item q-pa-md row" bordered>
-    <q-card-section>
+  <q-card class="transaction-item q-pa-md row">
+    <q-card-section class="q-pa-none">
       <div
         class="transaction-item__image-box flex-center"
-        :style="{ background: logoColor }"
+        :style="{ background: categoryColor }"
       >
         <img
-          :src="'src/assets/' + image"
+          :src="`src/assets/${categoryImage}.png`"
           class="transaction-item__image-box__image"
         />
       </div>
     </q-card-section>
-    <q-space />
     <q-card class="column">
-      <p class="transaction-item__transaction-name">{{ transactionName }}</p>
-      <p class="transaction-item__transaction-date">{{ transactionDate }}</p>
-      <q-card flat>
-        <q-card-section class="row" horizontal>
-          <div class="transactionDescImgBox">
-            <img src="../assets/business-and-finance.png" />
-          </div>
-          <p class="transactionDesc">{{ transactionDesc }}</p>
-        </q-card-section>
-      </q-card>
+      <p class="transaction-item__transaction-name q-mb-xs">
+        {{ transactionName }}
+      </p>
+      <p class="transaction-item__transaction-date text-weight-regular">
+        {{ transactionDate }}
+      </p>
+      <q-card-section class="row items-center" horizontal>
+        <div class="transaction-item__image">
+          <img src="../assets/business-and-finance.png" />
+        </div>
+        <p class="transaction-item__transaction-desc q-ma-none q-ml-sm">
+          {{ transactionDesc }}
+        </p>
+      </q-card-section>
     </q-card>
     <q-space />
     <q-card-section class="row q-pa-xs cursor-pointer">
       <b
-        :style="{ color: debitOrCredit === 'cr' ? 'green' : 'black' }"
+        :style="{ color: transactionType === 'cr' ? 'green' : 'black' }"
         class="transaction-item__currency"
       >
-        {{ debitOrCredit === "cr" ? "+  " : "-  " }} {{ currency + " "
-        }}{{ amount }}
+        {{ formattedTransactionAmount }}
       </b>
       <img src="../assets/next.png" class="transaction-item__next" />
     </q-card-section>
   </q-card>
+  <q-separator class="q-mx-lg" color="light-grey" />
 </template>
 
 <script lang="ts" setup>
-defineProps({
+import { computed } from "vue";
+
+const props = defineProps({
   transactionName: String,
   transactionDate: String,
   transactionDesc: String,
-  debitOrCredit: String,
+  transactionType: String,
   currency: String,
   amount: String,
-  logoColor: String,
-  image: String,
+  categoryColor: String,
+  categoryImage: String,
 });
+
+const formattedTransactionAmount = computed(
+  () =>
+    `${props.transactionType === "cr" ? "+  " : "-  "}${props.currency} ${
+      props.amount
+    }`
+);
 </script>
 
 <style scoped lang="scss">
@@ -64,6 +76,7 @@ defineProps({
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-right: 0.75rem;
 }
 
 .transaction-item__image-box__image {
@@ -81,17 +94,17 @@ defineProps({
 .transaction-item__transaction-date {
   color: #aaaaaa;
   font-size: 0.8125rem;
-  margin-top: -0.625rem;
+  margin-bottom: 0.75rem;
 }
 
-.transactionDesc {
+.transaction-item__transaction-desc {
   color: #325baf;
   font-size: 0.75rem;
   font-weight: 500;
-  margin-left: 0.625rem;
+  line-height: 1;
 }
 
-.transactionDescImgBox {
+.transaction-item__image {
   width: 1.5rem;
   height: 1.25rem;
   border-radius: 0.625rem !important;

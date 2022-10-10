@@ -4,3 +4,7 @@
 .q-carousel__slide {
   padding: 0 !important;
 }
+
+.bg-light-grey {
+  background: #f5f5f5 !important;
+}
