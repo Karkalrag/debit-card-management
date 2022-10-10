@@ -5,6 +5,8 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
+const noNavItems: string[] = ["new-card"];
+
 const navList = computed(() => {
   return router.options.routes.map(({ name, path }) => ({
     name,
@@ -16,12 +18,13 @@ const navList = computed(() => {
 
 <template>
   <nav class="app-navigation--mobile row justify-between q-px-lg q-py-md fixed">
-    <MobileNavItem
-      v-for="navItem in navList"
-      :key="navItem.name"
-      :title="String(navItem.name)"
-      :icon="String(navItem.icon)"
-    />
+    <template v-for="navItem in navList" :key="navItem.name">
+      <MobileNavItem
+        v-if="!noNavItems.includes(navItem.name as string)"
+        :title="String(navItem.name)"
+        :icon="String(navItem.icon)"
+      />
+    </template>
   </nav>
 </template>
 
