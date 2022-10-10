@@ -8,10 +8,10 @@ defineProps({
 <template>
   <q-expansion-item
     :default-opened="defaultExpanded"
-    :icon="`img:src/assets/${cardIcon}.png`"
+    :icon="`img:/assets/icons/${cardIcon}.png`"
     :label="label"
     class="expansion-card q-mx-md q-mb-md"
-    expand-icon="img:src/assets/down-arrow.png"
+    expand-icon="img:/assets/icons/down-arrow.png"
     header-class="expansion-card__header"
   >
     <slot />
