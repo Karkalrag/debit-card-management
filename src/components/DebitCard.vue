@@ -46,7 +46,7 @@ const formattedExpiryDate = computed(() =>
 
 <template>
   <div class="debit-card" :class="{ 'debit-card--desktop': !isMobileScreen }">
-    <div class="text-right">
+    <div class="text-right" :style="{ opacity: props.isCardFrozen ? 0 : 1 }">
       <span
         class="debit-card__show-card-number inline bg-white row inline items-center"
         :style="{ color }"
