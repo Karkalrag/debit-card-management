@@ -64,7 +64,7 @@ const formattedExpiryDate = computed(() =>
   margin: 0 auto;
 }
 .debit-card--desktop {
-  max-width: 26.875rem;
+  max-width: 25.625rem;
 }
 .debit-card__aspire-logo,
 .debit-card__visa-logo {

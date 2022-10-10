@@ -10,36 +10,12 @@ import CardDetails from "@/components/CardDetails.vue";
 import helpers from "@/helpers/helpers";
 import AddNewCardDialog from "../components/cards/AddNewCardDialog.vue";
 import { date } from "quasar";
+import { AllCardsInitialData } from "@/helpers/contants";
 
-const { isMobileScreen } = helpers();
+const { isMobileScreen, showToast } = helpers();
 const { addToDate } = date;
 
-const allDebitCards = ref([
-  {
-    id: 1,
-    name: "Jack Reacher",
-    number: "2213424342323232",
-    expiresOn: new Date("12/12/22"),
-    color: "#01D167",
-    isCardFrozen: false,
-  },
-  {
-    id: 2,
-    name: "Jack 1",
-    number: "9087425798649018",
-    expiresOn: new Date("10/24/22"),
-    color: "#536DFF",
-    isCardFrozen: false,
-  },
-  {
-    id: 3,
-    name: "Jack 2",
-    number: "1696701730771644",
-    expiresOn: new Date("01/12/23"),
-    color: "#01D167",
-    isCardFrozen: false,
-  },
-]);
+const allDebitCards = ref(AllCardsInitialData);
 
 const isAddCardDialogVisible = ref(false);
 const selectedCardId = ref(1);
@@ -94,6 +70,8 @@ const cancelDebitCard = () => {
     element.click();
   }
   openCancelConfirm.value = false;
+
+  showToast({ message: "Your card has been successfully cancelled." });
 };
 
 const onAddNewCard = ({
@@ -122,6 +100,8 @@ const onAddNewCard = ({
   isAddCardDialogVisible.value = false;
 
   selectedCardId.value = newCardId;
+
+  showToast({ message: "Your card has been successfully added." });
 };
 </script>
 
@@ -147,6 +127,12 @@ const onAddNewCard = ({
       }`"
     >
       <div class="my-debit-cards__scrollable-sections--desktop__left-section">
+        <div
+          v-if="allDebitCards.length === 0"
+          class="text-center q-py-xl text-weight-bolder"
+        >
+          You do not have an active debit card.
+        </div>
         <CardsCarousel
           v-if="!isMobileScreen"
           :selected-card-id="selectedCardId"
@@ -154,13 +140,17 @@ const onAddNewCard = ({
           @onFocus="onFocus"
         />
         <DebitCardActions
+          v-if="allDebitCards.length > 0"
           @onFreeze="handleFreeze"
           :debit-card-number="selectedCardId"
           :is-card-frozen="isSelectedCardFrozen()"
           @onCancel="onCancel"
         />
       </div>
-      <div class="my-debit-cards__expansion-sections-container q-py-md">
+      <div
+        v-if="allDebitCards.length > 0"
+        class="my-debit-cards__expansion-sections-container q-py-md"
+      >
         <CardDetails />
         <MyTransactions />
       </div>

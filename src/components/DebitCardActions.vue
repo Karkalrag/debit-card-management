@@ -79,6 +79,8 @@ const allActions = ref([
 .debit-card-actions--desktop {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  max-width: 25.625rem;
+  margin: 0 auto;
 }
 
 .debit-card-actions__button {
