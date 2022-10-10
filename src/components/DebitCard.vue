@@ -54,7 +54,7 @@ const formattedExpiryDate = computed(() =>
       >
         <img
           class="debit-card__show-card-number__image q-mr-xs"
-          src="src/assets/eye.png"
+          src="../assets/eye.png"
         />
         {{ isCardNumberShown ? "Hide" : "Show" }} card number</span
       >
